@@ -1,13 +1,14 @@
 build:
 	@sh services/scripts/build.sh
-run:
-	@./main
 test:
-	@sh test.sh
+	@sh services/scripts/test.sh
 clean:
-	@cd merge_sort
-	@rm -f linkedlist_app linkedlist_tests
+	@sh services/scripts/clean.sh
 build-deb:
+	@sh services/scripts/debBuild.sh
 lint-deb:
+	@lintian merge_sort-v1.0.1.deb
 docker-image:
+	@docker build -t merge_sort:latest .
 docker-run:
+	@docker run -d --rm --mount type=bind,source=/tmp,target=/tmp merge_sort:latest

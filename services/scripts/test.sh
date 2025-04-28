@@ -7,4 +7,4 @@ curl -o doctest.h https://raw.githubusercontent.com/doctest/doctest/master/docte
 g++ -std=c++11 -Wall -O linkedlist.cpp test.cpp -o test
 ./test
 
-echo "Successfully built and compiled in C++"
+echo "Built test in C++"
