@@ -1,0 +1,41 @@
+name: C/C++ CI
+
+run-name: ${{ github.actor }} is testing out GitHub Actions
+
+on: [push, pull_request]
+
+jobs:
+    build:
+        name: "Build program"
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout repo code
+              uses: actions/checkout@v4
+            - name: install dependencies
+              uses: sudo apt-get update && sudo apt-get install -y build-essential
+            - name: Build LinkedList program
+              run: |
+                  make build
+    test:
+        name: "Test Program"
+        runs-on: ubuntu-latest
+        needs: build
+        steps:
+            - name: checkout repository code
+              uses: actions/checkout@v4
+            - name: install dependencies
+              uses: sudo apt-get update && sudo apt-get install -y build-essential
+            - name: Test project
+              run: |
+                  make test
+
+    # build-deb:
+    #     name: "Building debian package"
+    #     runs-on: ubuntu-latest
+    #     timeout-minutes: 2
+    #     needs: build
+    # lint:
+    #     name: "Lint Debian Package"
+    #     runs-on: ubuntu-latest
+    #     timeout-minutes: 2
+    #     needs: test

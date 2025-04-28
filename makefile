@@ -6,7 +6,7 @@ clean:
 	@sh services/scripts/clean.sh
 build-deb:
 	@sh services/scripts/debBuild.sh
-lint-deb:
+lint-deb: build-deb
 	@lintian merge_sort-v1.0.1.deb
 docker-image:
 	@docker build -t merge_sort:latest .
