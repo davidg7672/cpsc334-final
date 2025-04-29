@@ -1,6 +1,6 @@
 #!/bin/sh
 
-cd merge_sort
-@rm -f main test
+rm -rf temp
+rm -f merge_sort-v1.0.1.deb
 
 echo "Cleaned"

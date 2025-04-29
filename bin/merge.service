@@ -1,0 +1,12 @@
+[Unit]
+Description=Merge Sort in C++
+After=network.target
+
+[Service]
+WorkingDirectory=/bin/
+ExecStart=/usr/bin/main
+User=Merge
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
