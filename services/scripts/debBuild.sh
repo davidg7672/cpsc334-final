@@ -30,7 +30,7 @@ cp bin/merge.service $TEMP/etc/systemd/system
 
 echo "Building deb file"
 dpkg-deb --root-owner-group --build $TEMP
-mv $TEMP.deb merge_sort-v1.0.1.deb
+mv $TEMP.deb merge-sort-v1.0.1.deb
 
 chmod 755 ${TEMP_DIR}/etc/
 chmod 755 ${TEMP_DIR}/etc/systemd/
