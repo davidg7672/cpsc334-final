@@ -15,15 +15,15 @@ echo "Copy control file DEBIAN"
 cp services/DEBIAN/control $TEMP/DEBIAN/
 
 echo "Copying postinst, prerm, and postrm scripts"
-cp services/DEBIAN/postinst $TEMP/DEBIAN
-cp services/DEBIANprerm $TEMP/DEBIAN
-cp services/DEBIAN/postrm $TEMP/DEBIAN
+cp services/DEBIAN/postinst $TEMP/DEBIAN/
+cp services/DEBIANprerm $TEMP/DEBIAN/
+cp services/DEBIAN/postrm $TEMP/DEBIAN/
 
 echo "Configuration file into place"
 cp bin/merge.conf $TEMP_DIR/etc/
 
 echo "Copying main.cpp"
-cp /bin/main.cpp $TEMP_DIR/bin/
+cp /bin/main.cpp $TEMP_DIR/usr/bin/
 
 echo "Moving merge.service file"
 cp bin/merge.service $TEMP/etc/systemd/system
@@ -38,7 +38,7 @@ chmod 755 ${TEMP_DIR}/etc/systemd/system
 chmod 755 ${TEMP_DIR}/etc/systemd/system/merge.service
 chmod 755 ${TEMP_DIR}/usr/
 chmod 755 ${TEMP_DIR}/usr/bin/
-chmod 755 ${TEMP_DIR}/usr/bin/main.py
-chmod 755 ${TEMP_DIR}/etc/counter.conf
+chmod 755 ${TEMP_DIR}/usr/bin/main.cpp
+chmod 755 ${TEMP_DIR}/etc/merge.conf
 
 echo "deb package built"
