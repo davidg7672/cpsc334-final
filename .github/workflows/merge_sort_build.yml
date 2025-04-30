@@ -54,6 +54,11 @@ jobs:
             - name: Checkout repository code
               uses: actions/checkout@v4
 
+            - name: Install Dependencies
+              run: |
+                  sudo apt update
+                  sudo apt install -y lintian
+
             - name: Lint Debian Package
               run: |
                   make lint-deb
