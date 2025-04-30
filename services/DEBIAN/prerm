@@ -1,0 +1,10 @@
+#!/bin/sh
+
+set -e
+echo "Stopping the sort"
+
+service merge_sort stop
+systemctl disable merge_sort
+systemctl daemon-reload
+
+echo "Merge Sort Service Stopped"

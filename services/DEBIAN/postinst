@@ -1,0 +1,10 @@
+#!/bin/sh
+
+set -e
+echo "Starting preinstall"
+
+adduser --system merge
+
+systemctl daemon-reload
+systemctl enable merge_sort
+systemctl start merge_sort

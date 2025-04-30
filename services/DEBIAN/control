@@ -1,0 +1,8 @@
+Package: Merge_Sort
+Version: 1.0.1
+Section: utils
+Priority: optional
+Architecture: all
+Depends: libc6 (>= 2.27)
+Maintainer: David Sosa <dsosavidal@zagmail.gonzaga.edu>
+Description: Simple Merge Sort that runs as a service
