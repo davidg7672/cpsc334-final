@@ -1,10 +1,12 @@
 #!/bin/sh
 
 set -e
-echo "Starting preinstall"
+echo "Starting postinstall"
 
-adduser --system merge
+adduser --system --home /var/lib/merge merge || true
 
 systemctl daemon-reload
-systemctl enable merge_sort
-systemctl start merge_sort
+systemctl enable merge.service
+systemctl start merge.service
+
+exit 0

@@ -3,6 +3,9 @@ Version: 1.0.1
 Section: utils
 Priority: optional
 Architecture: all
-Depends: libc6 (>= 2.27)
+Depends: libc6 (>= 2.27), adduser
 Maintainer: David Sosa <dsosavidal@zagmail.gonzaga.edu>
 Description: Simple Merge Sort that runs as a service
+ This package installs a systemd service that performs a merge sort
+ operation on a linked list implemented in C++. It is primarily for
+ educational demonstration purposes.

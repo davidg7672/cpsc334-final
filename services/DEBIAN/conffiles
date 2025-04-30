@@ -1,1 +1,2 @@
-/etc/merge.conf
+etc/merge.conf
+etc/systemd/merge.sevice
