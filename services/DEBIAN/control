@@ -1,4 +1,4 @@
-Package: Merge_Sort
+Package: merge-sort
 Version: 1.0.1
 Section: utils
 Priority: optional
