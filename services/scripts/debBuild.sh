@@ -33,7 +33,10 @@ chmod 755 $TEMP_DIR/DEBIAN/postinst
 chmod 755 $TEMP_DIR/DEBIAN/prerm
 chmod 755 $TEMP_DIR/DEBIAN/postrm
 chmod 755 $TEMP_DIR/usr/bin/
+chmod 755 $TEMP_DIR/etc/
 chmod 755 $TEMP_DIR/etc/merge.conf
+chmod 755 $TEMP_DIR/etc/systemd/
+chmod 755 $TEMP_DIR/etc/systemd/system/
 chmod 755 $TEMP_DIR/etc/systemd/system/merge.service
 
 echo "Building .deb package"
