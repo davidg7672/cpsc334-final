@@ -3,8 +3,8 @@
 set -e
 echo "Starting postinstall"
 
-adduser --system --home /var/lib/merge merge || true
+adduser --system merge
 
 systemctl daemon-reload
-systemctl enable merge.service
-systemctl start merge.service
+systemctl enable merge
+systemctl start merge
