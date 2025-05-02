@@ -5,11 +5,10 @@ TEMP_DIR=temp
 echo "Starting deb package build"
 
 echo "Making temporary directory tree"
-rm -rf $TEMP_DIR
 mkdir -p $TEMP_DIR
 mkdir -p $TEMP_DIR/etc/
-mkdir -p $TEMP_DIR/usr/bin
-mkdir -p $TEMP_DIR/DEBIAN
+mkdir -p $TEMP_DIR/usr/bin/
+mkdir -p $TEMP_DIR/DEBIAN/
 mkdir -p $TEMP_DIR/etc/systemd/system
 
 echo "Copying control file"

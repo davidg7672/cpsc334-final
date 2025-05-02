@@ -1,4 +1,4 @@
-name: C/C++ CI
+name: Python CI/CD
 
 run-name: ${{ github.actor }} is testing out GitHub Actions
 
