@@ -8,5 +8,3 @@ adduser --system --home /var/lib/merge merge || true
 systemctl daemon-reload
 systemctl enable merge.service
 systemctl start merge.service
-
-exit 0

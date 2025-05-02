@@ -1,11 +1,11 @@
 [Unit]
-Description=Merge Sort in C++
+Description=Merge Sort in Python
 After=network.target
 
 [Service]
 WorkingDirectory=/bin/
-ExecStart=/usr/bin/main
-User=Merge
+ExecStart=/usr/bin/python3 /bin/main.py
+User=merge
 Restart=always
 
 [Install]
