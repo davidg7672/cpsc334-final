@@ -3,8 +3,8 @@
 set -e
 echo "Stopping the sort"
 
-systemctl stop merge.service || true
-systemctl disable merge.service || true
+systemctl merge stop
+systemctl disable merge
 systemctl daemon-reload
 
 echo "Merge Sort Service Stopped"

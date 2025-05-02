@@ -5,7 +5,7 @@ set -e
 # only remove if user exists
 
 if id "merge" > /dev/null 2>&1; then
-    deluser --system merge || true
+    deluser merge
 fi
 
 systemctl daemon-reload
