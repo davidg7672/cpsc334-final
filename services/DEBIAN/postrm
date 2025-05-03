@@ -1,11 +1,14 @@
 #!/bin/sh
 
 
-set -e
+# set -e
 # only remove if user exists
 
-if id "merge" > /dev/null 2>&1; then
-    deluser merge
-fi
+# if id "merge" > /dev/null 2>&1; then
+    # deluser merge
+# fi
 
-systemctl daemon-reload
+# systemctl daemon-reload
+
+set -e
+systemctl daemon-reexec

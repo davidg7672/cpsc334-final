@@ -6,5 +6,5 @@ echo "Starting postinstall"
 adduser --system --home /var/lib/merge merge
 
 systemctl daemon-reload
-systemctl enable merge
-systemctl start merge
+systemctl enable merge.service
+systemctl start merge.service

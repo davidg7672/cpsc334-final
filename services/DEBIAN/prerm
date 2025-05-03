@@ -3,7 +3,7 @@
 set -e
 echo "Stopping the sort"
 
-systemctl merge stop
+systemctl stop merge.service
 systemctl disable merge
 systemctl daemon-reload
 
