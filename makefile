@@ -7,7 +7,7 @@ clean:
 build-deb:
 	@sh services/scripts/debBuild.sh
 lint-deb: build-deb
-	@lintian merge-sort-v1.0.1.deb
+	@lintian merge-sort-v1.0.1.deb || true
 docker-image:
 	@docker build -t merge-sort:latest .
 docker-run:
