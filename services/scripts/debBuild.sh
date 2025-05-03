@@ -32,8 +32,7 @@ cp bin/merge.conf $TEMP_DIR/etc/
 cp bin/main.py $TEMP_DIR/usr/bin/main  # Renaming to remove .py extension
 
 # Add proper shebang to main.py if not already there
-# sed -i '1s|^|#!/usr/bin/env python3\n|' $TEMP_DIR/usr/bin/main
-sed -i '' '1s|^|#!/usr/bin/env python3\n|' "$TEMP_DIR/usr/bin/main"
+sed -i '1s|^|#!/usr/bin/env python3\n|' $TEMP_DIR/usr/bin/main
 
 
 chmod 755 $TEMP_DIR/usr/bin/main
