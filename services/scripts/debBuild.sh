@@ -32,7 +32,9 @@ chmod 644 $TEMP_DIR/etc/merge.conf
 
 # PYTHON SCRIPT (rename to no .py and add shebang if needed)
 cp bin/main.py $TEMP_DIR/usr/bin/main
-sed -i '' '1s|^|#!/usr/bin/env python3\n|' $TEMP_DIR/usr/bin/main  # macOS-safe
+# sed -i '' '1s|^|#!/usr/bin/env python3\n|' $TEMP_DIR/usr/bin/main  # macOS-safe
+sed -i '1s|^|#!/usr/bin/env python3\n|' "$TEMP_DIR/usr/bin/main"
+
 chmod 755 $TEMP_DIR/usr/bin/main
 
 # SYSTEMD SERVICE
