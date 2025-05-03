@@ -1,5 +1,5 @@
 #!/bin/sh
 
-PROGRAM_NAME=merge_sort
+PROGRAM_NAME=merge
 
 echo "Successfully built in Python"

@@ -1,52 +1,75 @@
 #!/bin/sh
 
+set -e
+
 TEMP_DIR=temp
+PKG_NAME=merge-sort
+VERSION=1.0.1
 
 echo "Starting deb package build"
 
-echo "Making temporary directory tree"
-mkdir -p $TEMP_DIR
-mkdir -p $TEMP_DIR/etc/
-mkdir -p $TEMP_DIR/usr/bin/
-mkdir -p $TEMP_DIR/DEBIAN/
-mkdir -p $TEMP_DIR/etc/systemd/system
+# Clean and create directory tree
+rm -rf $TEMP_DIR
+mkdir -p $TEMP_DIR/DEBIAN
+mkdir -p $TEMP_DIR/usr/bin
+mkdir -p $TEMP_DIR/etc
+mkdir -p $TEMP_DIR/lib/systemd/system
+mkdir -p $TEMP_DIR/usr/share/doc/$PKG_NAME
 
-echo "Copying control file"
+echo "Copying control and maintainer scripts"
 cp services/DEBIAN/control $TEMP_DIR/DEBIAN/
-
-echo "Copying postinst, prerm, and postrm scripts"
 cp services/DEBIAN/postinst $TEMP_DIR/DEBIAN/
 cp services/DEBIAN/prerm $TEMP_DIR/DEBIAN/
 cp services/DEBIAN/postrm $TEMP_DIR/DEBIAN/
 
-echo "Copying configuration file"
+# Fix maintainer script permissions
+chmod 755 $TEMP_DIR/DEBIAN/postinst
+chmod 755 $TEMP_DIR/DEBIAN/prerm
+chmod 755 $TEMP_DIR/DEBIAN/postrm
+
+echo "Copying configuration and binary"
 cp bin/merge.conf $TEMP_DIR/etc/
+cp bin/main.py $TEMP_DIR/usr/bin/main  # Renaming to remove .py extension
 
-echo "Copying main.py"
-cp bin/main.py $TEMP_DIR/usr/bin/
+# Add proper shebang to main.py if not already there
+# sed -i '1s|^|#!/usr/bin/env python3\n|' $TEMP_DIR/usr/bin/main
+sed -i '' '1s|^|#!/usr/bin/env python3\n|' "$TEMP_DIR/usr/bin/main"
 
-echo "Copying merge.service file"
-cp bin/merge.service $TEMP_DIR/etc/systemd/system/
 
-echo "Setting permissions"
-# Set executable permissions for maintainer scripts
-chmod 755 ${TEMP_DIR}/DEBIAN/postinst
-chmod 755 ${TEMP_DIR}/DEBIAN/prerm
-chmod 755 ${TEMP_DIR}/DEBIAN/postrm
+chmod 755 $TEMP_DIR/usr/bin/main
 
-# Other files and directories
-chmod 755 ${TEMP_DIR}/etc/
-chmod 755 ${TEMP_DIR}/etc/systemd/
-chmod 755 ${TEMP_DIR}/etc/systemd/system/
-chmod 755 ${TEMP_DIR}/etc/systemd/system/merge.service
+echo "Copying systemd service"
+cp bin/merge.service $TEMP_DIR/lib/systemd/system/
+chmod 644 $TEMP_DIR/lib/systemd/system/merge.service
 
-chmod 755 ${TEMP_DIR}/usr/
-chmod 755 ${TEMP_DIR}/usr/bin/
-chmod 755 ${TEMP_DIR}/usr/bin/main.py
-chmod 755 ${TEMP_DIR}/etc/merge.conf
+# Add conffiles for Lintian
+cat <<EOF > $TEMP_DIR/DEBIAN/conffiles
+/etc/merge.conf
+/lib/systemd/system/merge.service
+EOF
 
-echo "Building deb package"
+# Create minimal changelog
+cat <<EOF > $TEMP_DIR/usr/share/doc/$PKG_NAME/changelog
+$PKG_NAME ($VERSION) stable; urgency=low
+
+  * Initial release
+
+ -- David Sosa <you@example.com>  $(date -R)
+EOF
+gzip -9n $TEMP_DIR/usr/share/doc/$PKG_NAME/changelog
+
+# Create minimal copyright
+cat <<EOF > $TEMP_DIR/usr/share/doc/$PKG_NAME/copyright
+Copyright (c) 2025 David Sosa
+License: MIT
+EOF
+
+# Fix file permissions
+chmod 644 $TEMP_DIR/etc/merge.conf
+chmod 644 $TEMP_DIR/usr/share/doc/$PKG_NAME/*
+
+echo "Building .deb package"
 dpkg-deb --root-owner-group --build $TEMP_DIR
-mv $TEMP_DIR.deb merge-sort-v1.0.1.deb
+mv $TEMP_DIR.deb ${PKG_NAME}-v${VERSION}.deb
 
-echo "deb package built"
+echo "Debian package built: ${PKG_NAME}-v${VERSION}.deb"

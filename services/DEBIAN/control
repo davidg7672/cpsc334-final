@@ -3,7 +3,7 @@ Version: 1.0.1
 Section: utils
 Priority: optional
 Architecture: all
-Depends: python3, python3-pytest, make
+Depends: python3, python3-pytest, make, adduser, systemd
 Maintainer: David Sosa <dsosavidal@zagmail.gonzaga.edu>
 Description: Simple Merge Sort that runs as a service
  This package installs a systemd service that performs a merge sort
